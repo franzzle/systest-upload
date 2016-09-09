@@ -1,0 +1,20 @@
+{
+  "name": "systest-upload",
+  "version": "1.0.0",
+  "description": "adds systest by upload gateway in routes and expectiations about the test",
+  "main": "node app.js",
+  "private": true,
+  "scripts": {
+    "start": "./start.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CGI",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.15.0",
+    "express": "4.13.4",
+    "multer": "1.2.0"
+  },
+  "devDependencies": {
+  }
+}
