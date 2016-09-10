@@ -1,18 +1,37 @@
 <html>
-    <head>
-        <title>Systest bundle upload</title>
-    </head>
-    <body ng-app="fileUpload">
-    <h1>Systest Bundle upload</h1>
-    <form  ng-controller="MyCtrl" name="uploadForm">
-        Systest bundle<br>
-        <input type="text" name="nameTest" ng-model="nameTest" size="31" required><br>
-        <input type="file" ngf-select ng-model="file" name="file"  ngf-pattern="'*.json'" ngf-max-size="20MB" />
-        <button ng-disabled="!uploadForm.$valid" ng-click="upload(file)">Submit</button>
-    </form>
-    </body>
 
-    <script type="text/javascript" src="public/libs/angular/angular.min.js"></script>
-    <script type="text/javascript" src="public/libs/ng-file-upload/ng-file-upload.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+<head>
+    <title>Systest bundle upload</title>
+    <link rel="stylesheet" href="public/css/normalize.css">
+    <link rel="stylesheet" href="public/css/skeleton.css">
+</head>
+
+<body ng-app="fileUpload">
+    <h1>Systest Bundle upload</h1>
+    <fieldset>
+        <legend>Upload system test bundle</legend>
+
+        <form ng-controller="MyCtrl" name="uploadForm">
+            <label>Name of test</label><input type="text" name="nameTest" ng-model="nameTest" size="60" required><br>
+            <label>Description</label><input type="text" name="description" ng-model="description" size="90" required><br>
+            <label>Expected Modality</label>
+            <select name="expectedModality" ng-model="expectedModality">
+                <option value="PUBLIC_TRANSPORT">PUBLIC_TRANSPORT</option>
+                <option value="CAR">CAR</option>
+                                <option value="BICYCLE">BICYCLE</option>
+                <option value="UNKNOWN">UNKNOWN</option>
+
+            </select><br>
+            <input type="file" ngf-select ng-model="file" name="file" ngf-pattern="'*.json'" ngf-max-size="20MB" required />
+            <button ng-disabled="!uploadForm.$valid" ng-click="upload(file)">Submit</button><br>
+            <span class="fadein fadeout" ng-show="showMessage">{{succesMsg}}</span><br>
+            <span class="error" ng-show="errorMsg">{{errorMsg}}</span>
+        </form>
+    </fieldset>
+</body>
+
+<script type="text/javascript" src="public/libs/angular/angular.min.js"></script>
+<script type="text/javascript" src="public/libs/ng-file-upload/ng-file-upload.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
 </html>
