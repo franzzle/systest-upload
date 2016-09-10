@@ -6,6 +6,8 @@
     <h1>Systest Bundle upload</h1>
     <form  ng-controller="MyCtrl as up" name="up.upload_form">
         Systest bundle
+        
+        <input type="text" ng.ng-model="up.nameTest" />
         <input type="file" ngf-select ng-model="up.file" name="file" 
         ngf-pattern="'*.json'" ngf-max-size="20MB" />
         <i ng-show="up.upload_form.file.$error.required">*required</i><br>
