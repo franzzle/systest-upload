@@ -4,15 +4,11 @@
     </head>
     <body ng-app="fileUpload">
     <h1>Systest Bundle upload</h1>
-    <form  ng-controller="MyCtrl as up" name="up.upload_form">
-        Systest bundle
-        
-        <input type="text" ng.ng-model="up.nameTest" />
-        <input type="file" ngf-select ng-model="up.file" name="file" 
-        ngf-pattern="'*.json'" ngf-max-size="20MB" />
-        <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-        <i ng-show="up.upload_form.file.$error.maxSize">Bestand is te groot {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-        <button type="submit" ng-click="up.submit()">Voeg toe</button>
+    <form  ng-controller="MyCtrl" name="uploadForm">
+        Systest bundle<br>
+        <input type="text" name="nameTest" ng-model="nameTest" size="31" required><br>
+        <input type="file" ngf-select ng-model="file" name="file"  ngf-pattern="'*.json'" ngf-max-size="20MB" />
+        <button ng-disabled="!uploadForm.$valid" ng-click="upload(file)">Submit</button>
     </form>
     </body>
 
