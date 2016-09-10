@@ -12,10 +12,10 @@
         <legend>Upload system test bundle</legend>
 
         <form ng-controller="MyCtrl" name="uploadForm">
-            <label>Name of test</label><input type="text" name="nameTest" ng-model="nameTest" size="60" required><br>
-            <label>Description</label><input type="text" name="description" ng-model="description" size="90" required><br>
+            <label>Name of test</label><input type="text" name="nameTest" ng-model="systest.nameTest" size="60" required><br>
+            <label>Description</label><input type="text" name="description" ng-model="systest.description" size="90" required><br>
             <label>Expected Modality</label>
-            <select name="expectedModality" ng-model="expectedModality">
+            <select name="expectedModality" ng-model="systest.expectedModality">
                 <option value="PUBLIC_TRANSPORT">PUBLIC_TRANSPORT</option>
                 <option value="CAR">CAR</option>
                                 <option value="BICYCLE">BICYCLE</option>

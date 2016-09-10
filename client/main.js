@@ -3,11 +3,7 @@ angular.module('fileUpload', ['ngFileUpload'])
         $scope.upload = function (file) {
             file.upload = Upload.upload({
                 url: 'http://localhost:8877/upload', //webAPI exposed to upload the file
-                data: { file: file, test: { 
-                    nameTest:$scope.nameTest,
-                    description:$scope.description,
-                    expectedModality:$scope.expectedModality} 
-                } //pass file as data, should be user ng-model
+                data: { file: file, test:$scope.systest } //pass file as data, should be user ng-model
             });
 
             //upload function returns a promise
