@@ -1,9 +1,15 @@
 var express = require('express')
 var multer  = require('multer')
-
+var path = require('path')
+var mkdirp = require('mkdirp');
 
 var storage = multer.diskStorage({
-  destination: '/Users/franzzle/uploads',
+  destination: function (req, file, cb) {
+    var dest = '/Users/franzzle/uploads/4AECBD3214';
+    mkdirp.sync(dest);
+    cb(null, dest);
+    
+   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
