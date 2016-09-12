@@ -2,13 +2,13 @@ var express = require('express')
 var multer  = require('multer')
 var path = require('path')
 var mkdirp = require('mkdirp');
+var uuid = require('uuid');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    var dest = '/Users/franzzle/uploads/4AECBD3214';
+    var dest = path.join('/Users/franzzle/uploads/' + uuid.v4());
     mkdirp.sync(dest);
     cb(null, dest);
-    
    },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
@@ -30,10 +30,10 @@ app.all('/upload', function(req, res, next) {
 
 // uploads the file to the multer diskstorage
 app.post('/upload', upload.single('file'), function (req, res, next) {
-
     //file details
     console.log(req.file.originalname); 
     console.log(req.body);
+
     res.json({error_code:0,err_desc:null});
 })
 
