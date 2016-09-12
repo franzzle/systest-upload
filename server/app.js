@@ -6,7 +6,8 @@ var uuid = require('uuid');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    var dest = path.join('/Users/franzzle/uploads/' + uuid.v4());
+    console.log('uploaddir is :' + process.env.UPLOADDIR);
+    var dest = path.join(process.env.UPLOADDIR  + uuid.v4());
     mkdirp.sync(dest);
     cb(null, dest);
    },
