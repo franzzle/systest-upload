@@ -22,7 +22,7 @@
                 <option value="UNKNOWN">UNKNOWN</option>
 
             </select><br>
-            <input type="file" ngf-select ng-model="file" name="file" ngf-pattern="'*.json'" ngf-max-size="20MB" required />
+            <input type="file" ngf-select ng-model="file" name="file" ngf-pattern="'*.json'" ngf-multiple="true" ngf-max-size="20MB" required />
             <button ng-disabled="!uploadForm.$valid" ng-click="upload(file)">Submit</button><br>
             <span class="fadein fadeout" ng-show="showMessage">{{succesMsg}}</span><br>
             <span class="error" ng-show="errorMsg">{{errorMsg}}</span>

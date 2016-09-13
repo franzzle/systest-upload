@@ -3,11 +3,14 @@ var multer  = require('multer')
 var path = require('path')
 var mkdirp = require('mkdirp');
 var uuid = require('uuid');
+var fs=require('fs');
+
+const UPLOAD_PATH='/Users/franzzle/uploads/';
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log('uploaddir is :' + process.env.UPLOADDIR);
-    var dest = path.join(process.env.UPLOADDIR  + uuid.v4());
+    console.log(req.body);
+    var dest = path.join(UPLOAD_PATH  + uuid.v4());
     mkdirp.sync(dest);
     cb(null, dest);
    },
@@ -16,10 +19,10 @@ var storage = multer.diskStorage({
   }
 })
 
-var upload = multer({ storage: storage })
+var upload = multer({ storage: storage });
 
 //If the filename should be unique, the diskstorage should not be used.
-//var upload = multer({ dest: '/Users/franzzle/uploads' })
+// var upload = multer({ dest: UPLOAD_PATH })
 
 var app = express()
 
@@ -30,10 +33,19 @@ app.all('/upload', function(req, res, next) {
  });
 
 // uploads the file to the multer diskstorage
-app.post('/upload', upload.single('file'), function (req, res, next) {
+app.post('/upload',upload.any(), function (req, res, next) {
+    
+    console.log(req.files);
+
+    var testDataFile = path.join(UPLOAD_PATH  + 'testData.json');
+    fs.writeFile(testDataFile, JSON.stringify(req.body), (err) => {
+      if (err) throw err;
+      console.log('It\'s saved!');
+    });
+
     //file details
-    console.log(req.file.originalname); 
-    console.log(req.body);
+    // console.log(req.file.originalname); 
+    // console.log(req.body);
 
     res.json({error_code:0,err_desc:null});
 })
